@@ -1,9 +1,16 @@
 package net.corda.training.state
 
-import net.corda.core.contracts.*
+import net.corda.core.contracts.Amount
+import net.corda.core.contracts.ContractState
+import net.corda.core.contracts.LinearState
+import net.corda.core.contracts.UniqueIdentifier
 import net.corda.core.identity.Party
-import net.corda.finance.*
-import net.corda.testing.*
+import net.corda.finance.DOLLARS
+import net.corda.finance.POUNDS
+import net.corda.testing.ALICE
+import net.corda.testing.BOB
+import net.corda.testing.MEGA_CORP
+import net.corda.testing.MINI_CORP
 import org.junit.Test
 import java.util.*
 import kotlin.test.assertEquals
@@ -27,37 +34,37 @@ class IOUStateTests {
      * Hint: [Amount] is a template class that takes a class parameter of the token you would like an [Amount] of.
      * As we are dealing with cash lent from one Party to another a sensible token to use would be [Currency].
      */
-//    @Test
-//    fun hasIOUAmountFieldOfCorrectType() {
-//        // Does the amount field exist?
-//        IOUState::class.java.getDeclaredField("amount")
-//        // Is the amount field of the correct type?
-//        assertEquals(IOUState::class.java.getDeclaredField("amount").type, Amount::class.java)
-//    }
+    @Test
+    fun hasIOUAmountFieldOfCorrectType() {
+        // Does the amount field exist?
+        IOUState::class.java.getDeclaredField("amount")
+        // Is the amount field of the correct type?
+        assertEquals(IOUState::class.java.getDeclaredField("amount").type, Amount::class.java)
+    }
 
     /**
      * Task 2.
      * TODO: Add a 'lender' property of type [Party] to the [IOUState] class to get this test to pass.
      */
-//    @Test
-//    fun hasLenderFieldOfCorrectType() {
-//        // Does the lender field exist?
-//        IOUState::class.java.getDeclaredField("lender")
-//        // Is the lender field of the correct type?
-//        assertEquals(IOUState::class.java.getDeclaredField("lender").type, Party::class.java)
-//    }
+    @Test
+    fun hasLenderFieldOfCorrectType() {
+        // Does the lender field exist?
+        IOUState::class.java.getDeclaredField("lender")
+        // Is the lender field of the correct type?
+        assertEquals(IOUState::class.java.getDeclaredField("lender").type, Party::class.java)
+    }
 
     /**
      * Task 3.
      * TODO: Add a 'borrower' property of type [Party] to the [IOUState] class to get this test to pass.
      */
-//    @Test
-//    fun hasBorrowerFieldOfCorrectType() {
-//        // Does the borrower field exist?
-//        IOUState::class.java.getDeclaredField("borrower")
-//        // Is the borrower field of the correct type?
-//        assertEquals(IOUState::class.java.getDeclaredField("borrower").type, Party::class.java)
-//    }
+    @Test
+    fun hasBorrowerFieldOfCorrectType() {
+        // Does the borrower field exist?
+        IOUState::class.java.getDeclaredField("borrower")
+        // Is the borrower field of the correct type?
+        assertEquals(IOUState::class.java.getDeclaredField("borrower").type, Party::class.java)
+    }
 
     /**
      * Task 4.
@@ -74,33 +81,33 @@ class IOUStateTests {
      *   [IOUState.amount] property. You can create an instance of the [Amount] class that takes a zero value and a token
      *   representing the currency - which should be the same currency as the [IOUState.amount] property.
      */
-//    @Test
-//    fun hasPaidFieldOfCorrectType() {
-//        // Does the paid field exist?
-//        IOUState::class.java.getDeclaredField("paid")
-//        // Is the paid field of the correct type?
-//        assertEquals(IOUState::class.java.getDeclaredField("paid").type, Amount::class.java)
-//    }
+    @Test
+    fun hasPaidFieldOfCorrectType() {
+        // Does the paid field exist?
+        IOUState::class.java.getDeclaredField("paid")
+        // Is the paid field of the correct type?
+        assertEquals(IOUState::class.java.getDeclaredField("paid").type, Amount::class.java)
+    }
 
     /**
      * Task 5.
      * TODO: Add an entry to the [IOUState.participants] list for the lender.
      */
-//    @Test
-//    fun lenderIsParticipant() {
-//        val iouState = IOUState(1.POUNDS, ALICE, BOB)
-//        assertNotEquals(iouState.participants.indexOf(ALICE), -1)
-//    }
+    @Test
+    fun lenderIsParticipant() {
+        val iouState = IOUState(1.POUNDS, ALICE, BOB)
+        assertNotEquals(-1,iouState.participants.indexOf(ALICE))
+    }
 
     /**
      * Task 6.
      * TODO: Similar to the last task, add an entry to the [IOUState.participants] list for the borrower.
      */
-//    @Test
-//    fun borrowerIsParticipant() {
-//        val iouState = IOUState(1.POUNDS, ALICE, BOB)
-//        assertNotEquals(iouState.participants.indexOf(BOB), -1)
-//    }
+    @Test
+    fun borrowerIsParticipant() {
+        val iouState = IOUState(1.POUNDS, ALICE, BOB)
+        assertNotEquals(iouState.participants.indexOf(BOB), -1)
+    }
 
     /**
      * Task 7.
@@ -109,10 +116,10 @@ class IOUStateTests {
      * IntellIJ to automatically add the member definitions for you or you can add them yourself. Look at the definition
      * of [LinearState] for what requires adding.
      */
-//    @Test
-//    fun isLinearState() {
-//        assert(LinearState::class.java.isAssignableFrom(IOUState::class.java))
-//    }
+    @Test
+    fun isLinearState() {
+        assert(LinearState::class.java.isAssignableFrom(IOUState::class.java))
+    }
 
     /**
      * Task 8.
@@ -123,13 +130,13 @@ class IOUStateTests {
      * agreement at a specific point in time) together. All the [LinearState]s with the same [LinearState.linearId]
      * represent the complete life-cycle to date of an agreement, asset or shared fact.
      */
-//    @Test
-//    fun hasLinearIdFieldOfCorrectType() {
-//        // Does the linearId field exist?
-//        IOUState::class.java.getDeclaredField("linearId")
-//        // Is the linearId field of the correct type?
-//        assertEquals(IOUState::class.java.getDeclaredField("linearId").type, UniqueIdentifier::class.java)
-//    }
+    @Test
+    fun hasLinearIdFieldOfCorrectType() {
+        // Does the linearId field exist?
+        IOUState::class.java.getDeclaredField("linearId")
+        // Is the linearId field of the correct type?
+        assertEquals(IOUState::class.java.getDeclaredField("linearId").type, UniqueIdentifier::class.java)
+    }
 
     /**
      * Task 9.
@@ -137,20 +144,20 @@ class IOUStateTests {
      * Hint: Make sure that the lender and borrower fields are not in the wrong order as this may cause some
      * confusion in subsequent tasks!
      */
-//    @Test
-//    fun checkIOUStateParameterOrdering() {
-//        val fields = IOUState::class.java.declaredFields
-//        val amountIdx = fields.indexOf(IOUState::class.java.getDeclaredField("amount"))
-//        val lenderIdx = fields.indexOf(IOUState::class.java.getDeclaredField("lender"))
-//        val borrowerIdx = fields.indexOf(IOUState::class.java.getDeclaredField("borrower"))
-//        val paidIdx = fields.indexOf(IOUState::class.java.getDeclaredField("paid"))
-//        val linearIdIdx = fields.indexOf(IOUState::class.java.getDeclaredField("linearId"))
-//
-//        assert(amountIdx < lenderIdx)
-//        assert(lenderIdx < borrowerIdx)
-//        assert(borrowerIdx < paidIdx)
-//        assert(paidIdx < linearIdIdx)
-//    }
+    @Test
+    fun checkIOUStateParameterOrdering() {
+        val fields = IOUState::class.java.declaredFields
+        val amountIdx = fields.indexOf(IOUState::class.java.getDeclaredField("amount"))
+        val lenderIdx = fields.indexOf(IOUState::class.java.getDeclaredField("lender"))
+        val borrowerIdx = fields.indexOf(IOUState::class.java.getDeclaredField("borrower"))
+        val paidIdx = fields.indexOf(IOUState::class.java.getDeclaredField("paid"))
+        val linearIdIdx = fields.indexOf(IOUState::class.java.getDeclaredField("linearId"))
+
+        assert(amountIdx < lenderIdx)
+        assert(lenderIdx < borrowerIdx)
+        assert(borrowerIdx < paidIdx)
+        assert(paidIdx < linearIdIdx)
+    }
 
     /**
      * Task 10.
@@ -159,22 +166,22 @@ class IOUStateTests {
      * The existing state is immutable so a new state must be created from the existing state. Kotlin provides a [copy]
      * method which creates a new object with new values for specified fields.
      */
-//    @Test
-//    fun checkPayHelperMethod() {
-//        val iou = IOUState(10.DOLLARS, ALICE, BOB)
-//        assertEquals(5.DOLLARS, iou.pay(5.DOLLARS).paid)
-//        assertEquals(3.DOLLARS, iou.pay(1.DOLLARS).pay(2.DOLLARS).paid)
-//        assertEquals(10.DOLLARS, iou.pay(5.DOLLARS).pay(3.DOLLARS).pay(2.DOLLARS).paid)
-//    }
+    @Test
+    fun checkPayHelperMethod() {
+        val iou = IOUState(10.DOLLARS, ALICE, BOB)
+        assertEquals(5.DOLLARS, iou.pay(5.DOLLARS).paid)
+        assertEquals(3.DOLLARS, iou.pay(1.DOLLARS).pay(2.DOLLARS).paid)
+        assertEquals(10.DOLLARS, iou.pay(5.DOLLARS).pay(3.DOLLARS).pay(2.DOLLARS).paid)
+    }
 
     /**
      * Task 11.
      * TODO: Add a helper method called [withNewLender] that can be called from an [IOUState] to change the IOU's lender.
      */
-//    @Test
-//    fun checkWithNewLenderHelperMethod() {
-//        val iou = IOUState(10.DOLLARS, ALICE, BOB)
-//        assertEquals(MINI_CORP, iou.withNewLender(MINI_CORP).lender)
-//        assertEquals(MEGA_CORP, iou.withNewLender(MEGA_CORP).lender)
-//    }
+    @Test
+    fun checkWithNewLenderHelperMethod() {
+        val iou = IOUState(10.DOLLARS, ALICE, BOB)
+        assertEquals(MINI_CORP, iou.withNewLender(MINI_CORP).lender)
+        assertEquals(MEGA_CORP, iou.withNewLender(MEGA_CORP).lender)
+    }
 }
